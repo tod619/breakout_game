@@ -103,6 +103,22 @@ function movePaddle() {
     }
 }
 
+// Move Ball on Canvas
+function moveBall() {
+    ball.x += ball.dx
+    ball.y += ball.dy
+
+    // Set Wall Collisions for Right/Left
+    if(ball.x + ball.size > canvas.width || ball.x - ball.size < 0) {
+        ball.dx *= -1
+    }
+
+    // Set Wall Collisions for Top/Bottom
+    if(ball.y + ball.size > canvas.height || ball.y - ball.size < 0){
+        ball.dy *= -1
+    }
+}
+
 // Draw Everything
 function draw() {
     // Clear context
@@ -120,6 +136,9 @@ function update() {
 
     // move paddle
     movePaddle()
+
+    // move the ball
+    moveBall()
 
     // Draw Everything
     draw()
