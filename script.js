@@ -131,8 +131,28 @@ function moveBall() {
                     ball.y + ball.size > brick.y && ball.y - ball.size < brick.y + brick.h){
                         ball.dy *= -1
                         brick.visible = false
+                        increaseScore()
                     }
             }
+        })
+    })
+}
+
+// Create a function to increase the score
+function increaseScore() {
+    score++
+
+    if(score % (brickRowCount * brickColumnCount) === 0){
+        showAllBricks()
+    }
+    
+}
+
+// Make all bricks appear again
+function showAllBricks(){
+    bricks.forEach(column => {
+        column.forEach(brick => {
+            brick.visible = true
         })
     })
 }
